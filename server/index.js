@@ -11,7 +11,7 @@ import helmet from 'koa-helmet';
 const port = process.env.PORT || 3000;
 const app = new Koa();
 const buildFolder = path.resolve(`${__dirname}/../build`);
-// const indexFile = path.resolve(`${__dirname}/../build/index.html`);
+const indexFile = path.resolve(`${__dirname}/../build/index.html`);
 // const dataFolder = path.resolve(`${__dirname}/../build/assets/data`);
 
 app.use(logger());
@@ -27,7 +27,7 @@ app.use(serve(buildFolder));
 app.use(async (ctx) => {
   ctx.set(`Content-Type`, `text/html; charset=utf-8`);
   ctx.set(`Cache-Control`, `max-age=0`);
-  const readStream = createReadStream(buildFolder);
+  const readStream = createReadStream(indexFile);
   ctx.body = readStream;
   ctx.status = 200;
 });
