@@ -1,4 +1,5 @@
 <link rel="import" href="../../assets/libs/polymer/polymer.html">
+<link rel="import" href="../post/portfolio-post.html">
 
 <dom-module id="portfolio-list">
 
@@ -10,9 +11,12 @@
           display: flex;
       }
 
+      .list-item > * {
+        pointer-events: none;
+        user-select: none;
+      }
     </style>
 
-    List
   <app-route route="[[route]]" pattern="/:category" data="{{router}}"></app-route>
   <iron-ajax auto url="[[categoryRequest]]" handle-as="json" on-response="handleResponse" debounce-duration="300"></iron-ajax>
 
@@ -24,6 +28,8 @@
       <img src="[[item.thumbnail.src]]" alt="[[item.thumbnail.altText]]">
     </div>
   </template>
+
+  <portfolio-post post="[[selectedPost]]" visible></portfolio-post>
 
   </template>
 
@@ -38,7 +44,6 @@
       ],
 
       properties: {
-
         category: {
           type: String,
           value: () => { return ``; },
@@ -51,6 +56,10 @@
           type: Object,
           value: () => { return {}; },
         },
+        selectedPost: {
+          type: String,
+          value: () => { return ``; },
+        }
       },
 
       observers: [
@@ -82,6 +91,11 @@
       handleResponse(data) {
         this.set(`categoryContent`, data.detail.response);
         console.log(this.categoryContent);
+      },
+
+      handleTap(event) {
+        this.set(`selectedPost`, event.target.dataset.id)
+        console.log(this.selectedPost);
       },
 
     });

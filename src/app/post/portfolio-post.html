@@ -1,0 +1,56 @@
+<link rel="import" href="../../assets/libs/polymer/polymer.html">
+
+<dom-module id="portfolio-post">
+
+  <template>
+
+    <style>
+
+      :host {
+          display: flex;
+      }
+
+      :host:not([visible]) {
+          display: none !important;
+      }
+
+    </style>
+
+    POST
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'portfolio-post',
+
+      behaviors: [
+
+      ],
+
+      properties: {
+        post: {
+          type: Object,
+          value: () => { return {}; },
+        }
+      },
+
+      ready() {
+
+      },
+
+      attached() {
+
+      },
+
+      detached() {
+
+      },
+
+    });
+
+  </script>
+
+</dom-module>
