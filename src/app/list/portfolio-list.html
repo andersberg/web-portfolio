@@ -13,6 +13,17 @@
     </style>
 
     List
+  <app-route route="[[route]]" pattern="/:category" data="{{router}}"></app-route>
+  <iron-ajax auto url="[[categoryRequest]]" handle-as="json" on-response="handleResponse" debounce-duration="300"></iron-ajax>
+
+
+  <template is="dom-repeat" items="[[categoryContent.content]]">
+    <div class="list-item" on-tap="handleTap" data-id$="[[item.slug]]">
+      <p>[[item.projectName]]</p>
+      <p>[[item.slug]]</p>
+      <img src="[[item.thumbnail.src]]" alt="[[item.thumbnail.altText]]">
+    </div>
+  </template>
 
   </template>
 
@@ -28,7 +39,23 @@
 
       properties: {
 
+        category: {
+          type: String,
+          value: () => { return ``; },
+        },
+        categoryRequest: {
+          type: String,
+          computed: `computeRequestURL(category)`,
+        },
+        categoryContent: {
+          type: Object,
+          value: () => { return {}; },
+        },
       },
+
+      observers: [
+        'observerRouterPage(router)',
+      ],
 
       ready() {
 
@@ -43,7 +70,19 @@
       },
 
       /* FUNCTIONS */
+      observerRouterPage(router) {
+        this.set(`category`, router.category);
+        console.log(this.category);
+      },
 
+      computeRequestURL(category) {
+        return `../../assets/data/${category}.json`;
+      },
+
+      handleResponse(data) {
+        this.set(`categoryContent`, data.detail.response);
+        console.log(this.categoryContent);
+      },
 
     });
 
