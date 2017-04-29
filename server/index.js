@@ -11,7 +11,8 @@ import helmet from 'koa-helmet';
 const port = process.env.PORT || 3000;
 const app = new Koa();
 const buildFolder = path.resolve(`${__dirname}/../build`);
-const indexFile = path.resolve(`${__dirname}/../build/index.html`);
+// const indexFile = path.resolve(`${__dirname}/../build/index.html`);
+// const dataFolder = path.resolve(`${__dirname}/../build/assets/data`);
 
 app.use(logger());
 app.use(helmet.frameguard({ action: 'deny', }));
@@ -20,12 +21,13 @@ app.use(helmet.xssFilter());
 app.use(compress());
 app.use(conditional());
 app.use(etag());
-app.use(serve(buildFolder, { index: false, }));
+app.use(serve(buildFolder));
+// app.use(serve(dataFolder, { index: false, }));
 
 app.use(async (ctx) => {
   ctx.set(`Content-Type`, `text/html; charset=utf-8`);
   ctx.set(`Cache-Control`, `max-age=0`);
-  const readStream = createReadStream(indexFile);
+  const readStream = createReadStream(buildFolder);
   ctx.body = readStream;
   ctx.status = 200;
 });
