@@ -1,0 +1,66 @@
+# ----------------
+# MACHINE CONFIGURATION
+# https://circleci.com/docs/configuration/#machine
+# ----------------
+machine:
+  timezone:
+    Europe/Stockholm
+  environment:
+    VERSION: $(echo $CIRCLE_TAG | sed 's/[\",.,-]//g')
+    DEV_PROJECT_NAME: dev-xxxx-xxx
+    STG_PROJECT_NAME: stg-xxxx-xxx
+    PRD_PROJECT_NAME: prd-xxxx-xxx
+
+
+# ----------------
+# DEPLOYMENT
+# https://circleci.com/docs/configuration/#deployment
+# ----------------
+deployment:
+  dev:
+    tag: /^v\d+\.\d+\.\d+-build\.\d+$/
+    owner: apegroup
+    commands:
+      # BUILD
+      - npm run gulp build --dev
+
+      # FIREBASE DEPLOYMENT
+    #   - firebase deploy --project=$DEV_PROJECT_NAME --token=$FIREBASE_TOKEN --message=$VERSION --only=hosting --non-interactive
+
+      # GCLOUD DEPLOYMENT
+    #   - base64 --decode <<< $GCLOUD_SERVICE_KEY_DEV > ${HOME}/gcloud-service-key.json
+    #   - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
+    #   - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+    #   - sudo /opt/google-cloud-sdk/bin/gcloud --quiet app deploy app.yml --promote --project=$DEV_PROJECT_NAME --version=$VERSION
+
+  stg:
+    tag: /^v\d+\.\d+\.\d+-rc\.\d+$/
+    owner: apegroup
+    commands:
+      # BUILD
+      - npm run gulp build --stg
+
+      # FIREBASE DEPLOYMENT
+    #   - firebase deploy --project=$STG_PROJECT_NAME --token=$FIREBASE_TOKEN --message=$VERSION --only=hosting --non-interactive
+
+      # GCLOUD DEPLOYMENT
+    #   - base64 --decode <<< $GCLOUD_SERVICE_KEY_STG > ${HOME}/gcloud-service-key.json
+    #   - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
+    #   - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+    #   - sudo /opt/google-cloud-sdk/bin/gcloud --quiet app deploy app.yml --promote --project=$STG_PROJECT_NAME --version=$VERSION
+
+  prd:
+    tag: /^v\d+\.\d+\.\d+$/
+    owner: apegroup
+    commands:
+      # BUILD
+      - npm run gulp build --prd
+
+      # FIREBASE DEPLOYMENT
+    #   - firebase deploy --project=$PRD_PROJECT_NAME --token=$FIREBASE_TOKEN --message=$VERSION --only=hosting --non-interactive
+
+      # GCLOUD DEPLOYMENT
+    #   - base64 --decode <<< $GCLOUD_SERVICE_KEY_PRD > ${HOME}/gcloud-service-key.json
+    #   - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
+    #   - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+    #   - sudo /opt/google-cloud-sdk/bin/gcloud --quiet app deploy app.yml --no-promote --project=$PRD_PROJECT_NAME --version=$VERSION

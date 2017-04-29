@@ -1,0 +1,65 @@
+{
+  "name": "web-portfolio",
+  "version": "1.0.0",
+  "author": "Anders Berg",
+  "description": "Progressive Web Application.",
+  "private": true,
+  "license": "MIT",
+  "main": "server",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "gulp": "./node_modules/gulp-cli/bin/gulp.js --gulpfile=./gulp/gulp.js --require babel-register --cwd=./",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags",
+    "start": "node --require babel-register ./",
+    "test": "npm run test:client",
+    "test:client": "wct --local=chrome 'src/**/*.spec.html'",
+    "test:server": "mocha --compilers js:babel-register ./server/**/*.spec.js"
+  },
+  "dependencies": {
+    "koa": "^2.2.0",
+    "koa-compress": "^2.0.0",
+    "koa-conditional-get": "^2.0.0",
+    "koa-etag": "^3.0.0",
+    "koa-helmet": "^3.1.0",
+    "koa-logger": "^2.0.1",
+    "koa-static": "^3.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.7",
+    "babel-core": "^6.24.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-register": "^6.18.0",
+    "browser-sync": "^2.18.5",
+    "del": "^2.2.2",
+    "eslint": "^3.19.0",
+    "eslint-plugin-html": "^2.0.1",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-cli": "^1.2.2",
+    "gulp-favicons": "^2.2.7",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-notify": "^3.0.0",
+    "gulp-polymer-postcss": "^1.0.0",
+    "gulp-postcss": "^6.4.0",
+    "gulp-rename": "^1.2.2",
+    "mocha": "^3.2.0",
+    "node-fetch": "^1.6.3",
+    "polymer-build": "^0.5.1",
+    "postcss-custom-media": "^5.0.1",
+    "web-component-tester": "^5.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andersberg/web-portfolio"
+  },
+  "contributors": [
+    {
+      "name": "Anders Berg",
+      "email": "andersberg86@gmail.com"
+    }
+  ]
+}

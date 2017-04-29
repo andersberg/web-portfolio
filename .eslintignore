@@ -1,0 +1,5 @@
+.git
+.vscode
+build
+node_modules
+src/assets/libs

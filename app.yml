@@ -1,0 +1,7 @@
+# Node.js
+# https://cloud.google.com/appengine/docs/flexible/nodejs/configuring-your-app-with-app-yaml
+runtime: nodejs
+env: flex
+service: default
+health_check:
+  enable_health_check: false

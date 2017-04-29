@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Webcomponent test</title>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="portfolio-home.html">
+</head>
+<body>
+
+  <test-fixture id="portfolio-home">
+    <template>
+      <portfolio-home></portfolio-home>
+    </template>
+  </test-fixture>
+
+  <script>
+
+    suite('<portfolio-home>', () => {
+      let element;
+      setup(() => {
+        element = fixture('portfolio-home');
+      });
+
+      test('has correct element name', () => {
+        expect(element.is).to.be.equal('portfolio-home');
+      });
+    });
+
+  </script>
+
+</body>
+</html>

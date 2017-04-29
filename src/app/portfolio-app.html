@@ -1,0 +1,89 @@
+<link rel="import" href="../environments/environment.html">
+<link rel="import" href="../assets/libs/polymer/polymer.html">
+<link rel="import" href="../assets/libs/app-route/app-route.html">
+<link rel="import" href="../assets/libs/app-route/app-location.html">
+<link rel="import" href="../assets/libs/iron-pages/iron-pages.html">
+<link rel="import" href="home/portfolio-home.html">
+
+<dom-module id="portfolio-app">
+
+  <template>
+
+    <style>
+
+      :host {
+          display: flex;
+          flex-direction: column;
+      }
+
+      header, iron-pages {
+          padding: 1.6rem;
+      }
+
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route route="[[route]]" pattern="/:page" data="{{router}}"></app-route>
+
+    <header>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+    </header>
+
+    <iron-pages selected="[[page]]" attr-for-selected="selected" selected-attribute="visible" fallback-selection="404" on-iron-select="listenerIronSelect">
+      <portfolio-home selected="home"></portfolio-home>
+      <portfolio-about selected="about"></portfolio-about>
+    </iron-pages>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'portfolio-app',
+
+      behaviors: [
+
+      ],
+
+      properties: {
+        router: {
+          type: Object,
+        },
+        page: {
+          type: String,
+        },
+      },
+
+      observers: [
+        'observerRouterPage(router.page)',
+      ],
+
+      ready() {
+
+      },
+
+      attached() {
+
+      },
+
+      detached() {
+
+      },
+
+      observerRouterPage(page) {
+        this.page = (page === '') ? 'home' : page;
+      },
+
+      listenerIronSelect(event) {
+        const name = event.target.selected;
+        const importHref = `${name}/portfolio-${name}.html`;
+        this.importHref(this.resolveUrl(importHref), null, null, true);
+      },
+
+    });
+
+  </script>
+
+</dom-module>

@@ -1,0 +1,8 @@
+{
+  "en-US": {
+    "test.hello": "Hello"
+  },
+  "sv-SE": {
+    "test.hello": "Hallå"
+  }
+}

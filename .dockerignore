@@ -1,0 +1,11 @@
+.git
+.vscode
+gulp
+node_modules
+src
+.*
+bower.json
+circle.yml
+Dockerfile
+LICENSE.md
+README.md

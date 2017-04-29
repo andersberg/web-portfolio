@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <title>Web Portfolio</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="favicon-230x230.png" sizes="230x230">
+  <script src="assets/libs/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="app/portfolio-app.html">
+
+  <style>
+
+    :root {
+      --baseline: 2.4rem; /* font-size-md x line-height-comfort */
+
+      --line-height: 1.2;
+      --line-height-comfort: 1.6;
+
+      --font-size-sm: 1.4rem;
+      --font-size-md: 1.6rem;
+      --font-size-lg: 1.8rem;
+
+      --xxs: calc(var(--baseline) / 3);
+      --xs: calc(var(--baseline) / 2);
+      --sm: calc(var(--baseline) / 1.5);
+      --md: var(--baseline);
+      --lg: calc(var(--baseline) * 1.5);
+      --xl: calc(var(--baseline) * 2);
+      --xxl: calc(var(--baseline) * 3);
+    }
+
+    html {
+      height: 100%;
+      font-family: sans-serif;
+      line-height: var(--line-height);
+      font-size: 62.5%;
+      background-color: #fff;
+      color: #222;
+    }
+
+    @media (--tablet) {
+      html {
+        background-color: #efefef;
+      }
+    }
+
+    @media (--desktop) {
+      html {
+        background-color: #c5c5c5;
+      }
+    }
+
+    @media (--lg-desktop) {
+      html {
+        background-color: #a5a5a5;
+      }
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      min-height: 100%;
+      font-size: var(--font-size-md);
+    }
+
+    portfolio-app {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <noscript>This page requires javascript</noscript>
+  <portfolio-app></portfolio-app>
+
+</body>
+</html>
