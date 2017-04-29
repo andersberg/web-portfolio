@@ -12,6 +12,13 @@
 
     </style>
 
+    <iron-ajax
+    auto
+    url="/assets/data/data.json"
+    handle-as="json"
+    on-response="handleResponse"
+    debounce-duration="300"></iron-ajax>
+
     About
 
   </template>
@@ -27,7 +34,9 @@
       ],
 
       properties: {
-
+        data: {
+          type: Object
+        },
       },
 
       ready() {
@@ -41,6 +50,11 @@
       detached() {
 
       },
+
+      /* FUNCTIONS */
+      handleResponse(data) {
+        console.log(data.detail.response);
+      }
 
     });
 
