@@ -1,0 +1,46 @@
+{
+  "pageTitle": "Graphic Design",
+  "introText": "Stuff I have made, new and old.",
+  "content": [
+    {
+      "projectName": "Berg & Johanssons Kräftskiva 2014.",
+      "slug": "kraftskiva",
+      "author": "Anders Berg",
+      "category": "Layout & Tryck",
+      "date": "2014",
+      "description": "Sånghäfte, bordsplaceringskort och vepa till 2014 års upplaga av min och min flickväns årliga kräftskiva.",
+      "thumbnail": {
+        "src": "http://andersberg.net/img/kraftskiva_preview.png",
+        "altText": "Picture of a songbook."
+      },
+      "images": [
+        "http://andersberg.net/kraftskiva/kraftskiva01.png",
+        "http://andersberg.net/kraftskiva/kraftskiva02.png",
+        "http://andersberg.net/kraftskiva/kraftskiva03.png",
+        "http://andersberg.net/kraftskiva/kraftskiva04.png"
+      ]
+    },
+    {
+      "projectName": "Tjallamalla",
+      "slug": "tjallamalla",
+      "author": "Anders Berg, Jennie Lindholm, Malene Gjerdrum, Mikael Noaksson & Mikaela Lidquist.",
+      "category": "Grafiskformgivning",
+      "date": "2010",
+      "description": "Under min utbildning skapade jag tillsammans med fyra klasskompisar (Jennie Lindholm, Madeleine Gjerdrum, Mikael Noaksson och Mikaela Lidquist) en fiktiv lanseringskampanj för den tyska marknaden åt den svenska klädkedjan Tjallamalla. Vi döpte kampanjen till “Live Tjallamalla för att visa hur Tjallamalla är synonymt med alla delar av målgruppens livsstil.\n I kampanjen valde vi att fokuseraa på alla olika delar av livet, alla olika situationer där Tjallamalla är närvarande i målgruppens vardag. Oavsett vad Tjallamallas kunder gör eller befinner sig i livet så binds de samman av sin livsstil - they live Tjallamalla.\n Tjallamalla är en del av livet; you shine Tjallamalla, you carry Tjallamalla, you walk Tjallamalla and you wear Tjallamalla.\n The name says it all...",
+      "thumbnail": {
+        "src": "http://andersberg.net/img/tjallamalla_preview.png",
+        "altText": "Tjallamallas logotyp på en textilbakgrund."
+      },
+      "images": [
+        "http://andersberg.net/tjallamalla/wear.png",
+        "http://andersberg.net/tjallamalla/smile.png",
+        "http://andersberg.net/tjallamalla/play.png",
+        "http://andersberg.net/tjallamalla/marry.png",
+        "http://andersberg.net/tjallamalla/walk.png",
+        "http://andersberg.net/tjallamalla/bleed.png",
+        "http://andersberg.net/tjallamalla/annons.png",
+        "http://andersberg.net/tjallamalla/banner.gif"
+      ]
+    }
+  ]
+}

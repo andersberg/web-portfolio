@@ -1,0 +1,89 @@
+{
+  "pageTitle": "Photography",
+  "introText": "Things I have seen, new and old.",
+  "content": [
+    {
+      "projectName": "Kenya",
+      "slug": "kenya",
+      "author": "Anders Berg",
+      "date": "2008",
+      "location": "Nukuru och Masai Mara",
+      "description": "Bilder från när jag med min familj besökte Kenya. Stilen på bilderna är en lite homage till min idol Nick Brandt.",
+      "thumbnail": {
+        "src": "http://andersberg.net/img/kenya_preview.jpg",
+        "altText": "Pictures of an elephant."
+      },
+      "images": [
+        "http://andersberg.net/kenya/kenya01.jpg",
+        "http://andersberg.net/kenya/kenya02.jpg",
+        "http://andersberg.net/kenya/kenya03.jpg",
+        "http://andersberg.net/kenya/kenya04.jpg",
+        "http://andersberg.net/kenya/kenya05.jpg",
+        "http://andersberg.net/kenya/kenya06.jpg",
+        "http://andersberg.net/kenya/kenya07.jpg",
+        "http://andersberg.net/kenya/kenya08.jpg",
+        "http://andersberg.net/kenya/kenya09.jpg",
+        "http://andersberg.net/kenya/kenya10.jpg",
+        "http://andersberg.net/kenya/kenya11.jpg",
+        "http://andersberg.net/kenya/kenya12.jpg",
+        "http://andersberg.net/kenya/kenya13.jpg",
+        "http://andersberg.net/kenya/kenya14.jpg",
+        "http://andersberg.net/kenya/kenya15.jpg",
+        "http://andersberg.net/kenya/kenya16.jpg",
+        "http://andersberg.net/kenya/kenya17.jpg",
+        "http://andersberg.net/kenya/kenya18.jpg",
+        "http://andersberg.net/kenya/kenya19.jpg",
+        "http://andersberg.net/kenya/kenya20.jpg",
+        "http://andersberg.net/kenya/kenya21.jpg",
+        "http://andersberg.net/kenya/kenya22.jpg",
+        "http://andersberg.net/kenya/kenya23.jpg",
+        "http://andersberg.net/kenya/kenya24.jpg",
+        "http://andersberg.net/kenya/kenya25.jpg",
+        "http://andersberg.net/kenya/kenya26.jpg",
+        "http://andersberg.net/kenya/kenya27.jpg",
+        "http://andersberg.net/kenya/kenya28.jpg",
+        "http://andersberg.net/kenya/kenya29.jpg",
+        "http://andersberg.net/kenya/kenya30.jpg",
+        "http://andersberg.net/kenya/kenya31.jpg",
+        "http://andersberg.net/kenya/kenya32.jpg",
+        "http://andersberg.net/kenya/kenya33.jpg",
+        "http://andersberg.net/kenya/kenya34.jpg",
+        "http://andersberg.net/kenya/kenya35.jpg",
+        "http://andersberg.net/kenya/kenya36.jpg",
+        "http://andersberg.net/kenya/kenya37.jpg",
+        "http://andersberg.net/kenya/kenya38.jpg",
+        "http://andersberg.net/kenya/kenya39.jpg"
+      ]
+    },
+    {
+      "projectName": "Sommar 2014",
+      "slug": "sommar2014",
+      "author": "Anders Berg",
+      "date": "2014",
+      "location": "Rättvik",
+      "description": "Bilder tagna i och omkring byn Tina under juli och augusti.",
+      "thumbnail": {
+        "src": "http://andersberg.net/img/sommar_preview.jpg",
+        "altText": "Picture of a sunset."
+      },
+      "images": [
+        "http://andersberg.net/sommar/sommar01.jpg",
+        "http://andersberg.net/sommar/sommar02.jpg",
+        "http://andersberg.net/sommar/sommar03.jpg",
+        "http://andersberg.net/sommar/sommar04.jpg",
+        "http://andersberg.net/sommar/sommar05.jpg",
+        "http://andersberg.net/sommar/sommar06.jpg",
+        "http://andersberg.net/sommar/sommar07.jpg",
+        "http://andersberg.net/sommar/sommar08.jpg",
+        "http://andersberg.net/sommar/sommar09.jpg",
+        "http://andersberg.net/sommar/sommar10.jpg",
+        "http://andersberg.net/sommar/sommar11.jpg",
+        "http://andersberg.net/sommar/sommar12.jpg",
+        "http://andersberg.net/sommar/sommar13.jpg",
+        "http://andersberg.net/sommar/sommar14.jpg",
+        "http://andersberg.net/sommar/sommar15.jpg",
+        "http://andersberg.net/sommar/sommar16.jpg"
+      ]
+    }
+  ]
+}
