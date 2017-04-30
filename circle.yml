@@ -19,7 +19,7 @@ machine:
 deployment:
   dev:
     tag: /^v\d+\.\d+\.\d+-build\.\d+$/
-    owner: apegroup
+    owner: andersberg
     commands:
       # BUILD
       - npm run gulp build --dev
@@ -35,7 +35,7 @@ deployment:
 
   stg:
     tag: /^v\d+\.\d+\.\d+-rc\.\d+$/
-    owner: apegroup
+    owner: andersberg
     commands:
       # BUILD
       - npm run gulp build --stg
@@ -51,7 +51,7 @@ deployment:
 
   prd:
     tag: /^v\d+\.\d+\.\d+$/
-    owner: apegroup
+    owner: andersberg
     commands:
       # BUILD
       - npm run gulp build --prd
