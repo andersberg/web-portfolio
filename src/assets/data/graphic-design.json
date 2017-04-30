@@ -4,7 +4,7 @@
   "content": [
     {
       "projectName": "Berg & Johanssons Kräftskiva 2014.",
-      "slug": "kraftskiva",
+      "id": "kraftskiva",
       "author": "Anders Berg",
       "category": "Layout & Tryck",
       "date": "2014",
@@ -22,7 +22,7 @@
     },
     {
       "projectName": "Tjallamalla",
-      "slug": "tjallamalla",
+      "id": "tjallamalla",
       "author": "Anders Berg, Jennie Lindholm, Malene Gjerdrum, Mikael Noaksson & Mikaela Lidquist.",
       "category": "Grafiskformgivning",
       "date": "2010",

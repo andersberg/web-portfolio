@@ -4,7 +4,7 @@
   "content": [
     {
       "projectName": "Kenya",
-      "slug": "kenya",
+      "id": "kenya",
       "author": "Anders Berg",
       "date": "2008",
       "location": "Nukuru och Masai Mara",
@@ -57,7 +57,7 @@
     },
     {
       "projectName": "Sommar 2014",
-      "slug": "sommar2014",
+      "id": "sommar2014",
       "author": "Anders Berg",
       "date": "2014",
       "location": "Rättvik",

@@ -24,7 +24,7 @@
   <template is="dom-repeat" items="[[categoryContent.content]]">
     <div class="list-item" on-tap="handleTap" data-id$="[[item.slug]]">
       <p>[[item.projectName]]</p>
-      <p>[[item.slug]]</p>
+      <p>[[item.id]]</p>
       <img src="[[item.thumbnail.src]]" alt="[[item.thumbnail.altText]]">
     </div>
   </template>
