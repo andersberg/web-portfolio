@@ -24,7 +24,9 @@
     </style>
 
     <app-location route="{{route}}"></app-location>
-    <app-route route="[[route]]" pattern="/:page" data="{{router}}" tail="{{subroute}}"></app-route>
+    <app-route route="{{route}}" pattern="/:page" data="{{pageRouter}}" tail="{{category}}"></app-route>
+    <app-route route="{{category}}" pattern="/:category" data="{{categoryRouter}}" tail="{{post}}"></app-route>
+    <app-route route="{{post}}" pattern="/:post" data="{{postRouter}}"></app-route>
 
     <header>
       <a href="/">Home</a>
@@ -35,9 +37,9 @@
 
     <iron-pages selected="[[page]]" attr-for-selected="selected" selected-attribute="visible" fallback-selection="404" on-iron-select="listenerIronSelect">
       <portfolio-home selected="home"></portfolio-home>
-      <portfolio-list selected="list" route="{{subroute}}"></portfolio-list>
-      <!--<portfolio-post selected="post" item=""></portfolio-post>-->
       <portfolio-about selected="about"></portfolio-about>
+      <portfolio-list selected="list" route="{{subroute}}" category="[[category]]"></portfolio-list>
+      <portfolio-post selected="post" route="{{subroute}}" post="[[post]]"></portfolio-post>
     </iron-pages>
 
   </template>
@@ -59,14 +61,24 @@
         page: {
           type: String,
         },
+        category: {
+          type: String,
+          value: () => { return ``; },
+        },
+        post: {
+          type: String,
+          value: () => { return ``; },
+        },
       },
 
       observers: [
-        'observerRouterPage(router.page)',
+        'observerRouterPage(pageRouter.page)',
+        'observerRouterCategory(categoryRouter.category)',
+        'observerRouterPost(postRouter.post)',
       ],
 
       listeners: {
-
+        'on-selected-post': `listenerSelectedPost`
       },
 
       ready() {
@@ -83,12 +95,28 @@
 
       observerRouterPage(page) {
         this.page = (page === '') ? 'home' : page;
+        console.log(`observerRouterPage: `, page);
+      },
+
+      observerRouterCategory(category) {
+        console.log(`observerRouterCategory: `, category);
+      },
+
+      observerRouterPost(post) {
+        console.log(`observerRouterPost: `, post);
       },
 
       listenerIronSelect(event) {
         const name = event.target.selected;
         const importHref = `${name}/portfolio-${name}.html`;
         this.importHref(this.resolveUrl(importHref), null, null, true);
+      },
+
+      listenerSelectedPost(event) {
+        this.set(`post`, event.detail);
+        this.set(`router.page`, `post/${this.post.id}`);
+        this.set(`page`, `post`);
+        // console.log(this.post);
       },
 
     });
