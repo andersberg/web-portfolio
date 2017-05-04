@@ -24,9 +24,9 @@
     </style>
 
     <app-location route="{{route}}"></app-location>
-    <app-route route="{{route}}" pattern="/:page" data="{{pageRouter}}" tail="{{category}}"></app-route>
-    <app-route route="{{category}}" pattern="/:category" data="{{categoryRouter}}" tail="{{post}}"></app-route>
-    <app-route route="{{post}}" pattern="/:post" data="{{postRouter}}"></app-route>
+    <app-route route="{{route}}" pattern="/:page" data="{{pageRouter}}" tail="{{categoryRoute}}"></app-route>
+    <app-route route="{{categoryRoute}}" pattern="/:category" data="{{categoryRouter}}" tail="{{postRoute}}"></app-route>
+    <app-route route="{{postRoute}}" pattern="/:post" data="{{postRouter}}"></app-route>
 
     <header>
       <a href="/">Home</a>
@@ -38,8 +38,8 @@
     <iron-pages selected="[[page]]" attr-for-selected="selected" selected-attribute="visible" fallback-selection="404" on-iron-select="listenerIronSelect">
       <portfolio-home selected="home"></portfolio-home>
       <portfolio-about selected="about"></portfolio-about>
-      <portfolio-list selected="list" route="{{subroute}}" category="[[category]]"></portfolio-list>
-      <portfolio-post selected="post" route="{{subroute}}" post="[[post]]"></portfolio-post>
+      <portfolio-list selected="list" category="[[category]]"></portfolio-list>
+      <portfolio-post selected="post" category="[[category]]" post="[[post]]"></portfolio-post>
     </iron-pages>
 
   </template>
@@ -55,11 +55,9 @@
       ],
 
       properties: {
-        router: {
-          type: Object,
-        },
         page: {
           type: String,
+          value: () => { return ``; },
         },
         category: {
           type: String,
@@ -78,7 +76,7 @@
       ],
 
       listeners: {
-        'on-selected-post': `listenerSelectedPost`
+        // 'on-selected-post': `listenerSelectedPost`
       },
 
       ready() {
@@ -93,31 +91,28 @@
 
       },
 
+
+      /* OBSERVERS */
       observerRouterPage(page) {
         this.page = (page === '') ? 'home' : page;
-        console.log(`observerRouterPage: `, page);
       },
 
       observerRouterCategory(category) {
-        console.log(`observerRouterCategory: `, category);
+        if (category) this.set(`category`, category);
       },
 
       observerRouterPost(post) {
-        console.log(`observerRouterPost: `, post);
+        if (post) this.set(`post`, post);
       },
 
+      /* LISTENERS */
       listenerIronSelect(event) {
         const name = event.target.selected;
         const importHref = `${name}/portfolio-${name}.html`;
         this.importHref(this.resolveUrl(importHref), null, null, true);
       },
 
-      listenerSelectedPost(event) {
-        this.set(`post`, event.detail);
-        this.set(`router.page`, `post/${this.post.id}`);
-        this.set(`page`, `post`);
-        // console.log(this.post);
-      },
+      /* FUNCTIONS */
 
     });
 
