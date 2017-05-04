@@ -18,9 +18,8 @@
       }
     </style>
 
-  <app-route route="[[route]]" pattern="/:category" data="{{router}}"></app-route>
-  <iron-ajax id="category-request" url="[[categoryRequest]]" handle-as="json" on-response="onCategoryResponse" debounce-duration="300"></iron-ajax>
-
+  <!--<app-route route="{{route}}" pattern="/:category" data="{{router}}"></app-route>-->
+  <iron-ajax id="category-request" url="[[requestUrl]]" handle-as="json" on-response="onCategoryResponse" debounce-duration="300"></iron-ajax>
 
   <template is="dom-repeat" items="[[categoryContent.content]]">
     <div class="list-item" on-tap="handleTap" data-id$="[[item.id]]">
@@ -49,8 +48,9 @@
           type: String,
           value: () => { return ``; },
         },
-        categoryRequest: {
+        requestUrl: {
           type: String,
+          value: () => { return ``; },
           computed: `computeRequestURL(category)`,
         },
         categoryContent: {
@@ -61,6 +61,8 @@
 
       observers: [
         'observerRouter(router)',
+        'observerCategory(category)',
+        'observerRequestUrl(requestUrl)',
       ],
 
       ready() {
@@ -75,17 +77,25 @@
 
       },
 
-      /* FUNCTIONS */
-      observerRouter(router) {
-        // if (this.route.prefix === `/list`) {
-        //   // console.log(`I'm a list!`);
-        //   this.set(`category`, router.category);
-        //   this.doRequest();
-        // }
+      /* OBSEVERS */
+      // observerRouter(router) {
+      //   console.log(`observerRouter: `, router);
+      //   // this.set(`category`, router.category);
+      // },
+
+      observerCategory(category) {
+        // console.log(`observerCategory: `, typeof this.category, this.category);
       },
 
+      observerRequestUrl(requestUrl) {
+        // if (requestUrl) console.log(`observerRequestUrl: `, requestUrl);
+        if (requestUrl) this.doRequest();
+      },
+
+      /* FUNCTIONS */
       computeRequestURL(category) {
-        return `../../assets/data/${category}.json`;
+        // console.log(`computeRequestURL: `, typeof category, category);
+        if (category) return `../../assets/data/${category}.json`;
       },
 
       doRequest() {
@@ -94,18 +104,18 @@
 
       onCategoryResponse(data) {
         this.set(`categoryContent`, data.detail.response);
-        // console.log(this.categoryContent);
       },
 
       handleTap(event) {
-        this.fire(`on-selected-post`, this.getSelectedPost(event.target.dataset.id));
+        console.log(`tap`)
+        // this.fire(`on-selected-post`, this.getSelectedPost(event.target.dataset.id));
       },
 
-      getSelectedPost(postId) {
-        for (let i in this.categoryContent.content) {
-          if (this.categoryContent.content[i].id === postId) return this.categoryContent.content[i];
-        }
-      },
+      // getSelectedPost(postId) {
+      //   for (let i in this.categoryContent.content) {
+      //     if (this.categoryContent.content[i].id === postId) return this.categoryContent.content[i];
+      //   }
+      // },
 
     });
 
