@@ -28,6 +28,8 @@
     <app-route route="{{categoryRoute}}" pattern="/:category" data="{{categoryRouter}}" tail="{{postRoute}}"></app-route>
     <app-route route="{{postRoute}}" pattern="/:post" data="{{postRouter}}"></app-route>
 
+    <iron-ajax id="category-request" url="[[requestUrl]]" handle-as="json" on-response="onCategoryResponse" debounce-duration="300"></iron-ajax>
+
     <header>
       <a href="/">Home</a>
       <a href="/list/graphic-design">Graphic Design</a>
@@ -36,10 +38,22 @@
     </header>
 
     <iron-pages selected="[[page]]" attr-for-selected="selected" selected-attribute="visible" fallback-selection="404" on-iron-select="listenerIronSelect">
-      <portfolio-home selected="home"></portfolio-home>
-      <portfolio-about selected="about"></portfolio-about>
-      <portfolio-list selected="list" category="[[category]]"></portfolio-list>
-      <portfolio-post selected="post" category="[[category]]" post="[[post]]"></portfolio-post>
+      <portfolio-home
+        selected="home"></portfolio-home>
+
+      <portfolio-about
+        selected="about"></portfolio-about>
+
+      <portfolio-list
+        selected="list"
+        category="[[category]]"></portfolio-list>
+
+      <portfolio-post
+        selected="post"
+        post="[[post]]"></portfolio-post>
+
+      <portfolio-404
+        selected="404"></portfolio-404>
     </iron-pages>
 
   </template>
@@ -57,26 +71,31 @@
       properties: {
         page: {
           type: String,
-          value: () => { return ``; },
+          value: () => { return {}; },
         },
         category: {
-          type: String,
+          type: Object,
           value: () => { return ``; },
         },
         post: {
-          type: String,
+          type: Object,
           value: () => { return ``; },
         },
+        requestUrl: {
+          type: String,
+          value: () => { return ``; },
+          computed: `computeRequestURL(categoryRouter.category)`,
+        }
       },
 
       observers: [
-        'observerRouterPage(pageRouter.page)',
-        'observerRouterCategory(categoryRouter.category)',
-        'observerRouterPost(postRouter.post)',
+        'logger(pageRouter.page)',
+        'observerRoute(route)',
+        'observerCategory(category)'
       ],
 
       listeners: {
-        // 'on-selected-post': `listenerSelectedPost`
+
       },
 
       ready() {
@@ -93,16 +112,34 @@
 
 
       /* OBSERVERS */
-      observerRouterPage(page) {
-        this.page = (page === '') ? 'home' : page;
+      logger(x) {
+        console.log(`logger: `, x);
       },
 
-      observerRouterCategory(category) {
-        if (category) this.set(`category`, category);
+      observerRoute(route) {
+        if (this.pageRouter.page === `list` && !this.categoryRouter
+            || this.pageRouter.page === `post` && !this.postRouter) {
+          this.set(`page`, `404`);
+        } else {
+          this.page = (this.pageRouter.page === '') ? 'home' : this.pageRouter.page;
+        }
+
+        if (this.categoryRouter) {
+          // console.log(`request`);
+          this.doRequest();
+        }
+
       },
 
-      observerRouterPost(post) {
-        if (post) this.set(`post`, post);
+      observerCategory(category) {
+        console.log(`observerCategory: `, category);
+
+        console.log(this.pageRouter.page);
+
+        // if (this.pageRouter.page === `post`) {
+        //   console.log(`get post`);
+        //   this.getPost(this.category);
+        // }
       },
 
       /* LISTENERS */
@@ -113,6 +150,25 @@
       },
 
       /* FUNCTIONS */
+      computeRequestURL(category) {
+        return `../../assets/data/${category}.json`;
+      },
+
+      doRequest() {
+        this.$$(`#category-request`).generateRequest();
+      },
+
+      onCategoryResponse(data) {
+        this.set(`category`, data.detail.response);
+      },
+
+      getPost(category) {
+        for (let i in category.content) {
+          if (category.content[i].id === this.postRouter.post)
+            this.set(`post`, category.content[i])
+            console.log(this.post);
+        }
+      },
 
     });
 

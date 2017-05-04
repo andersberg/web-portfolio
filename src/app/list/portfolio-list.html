@@ -1,5 +1,4 @@
 <link rel="import" href="../../assets/libs/polymer/polymer.html">
-<link rel="import" href="../../assets/libs/app-route/app-route.html">
 <link rel="import" href="../../assets/libs/iron-ajax/iron-ajax.html">
 
 <dom-module id="portfolio-list">
@@ -18,17 +17,15 @@
       }
     </style>
 
-  <app-route route="[[route]]" pattern="/:category" data="{{router}}"></app-route>
-  <iron-ajax id="category-request" url="[[categoryRequest]]" handle-as="json" on-response="onCategoryResponse" debounce-duration="300"></iron-ajax>
+    <!--<iron-ajax id="category-request" url="[[requestUrl]]" handle-as="json" on-response="onCategoryResponse" debounce-duration="300"></iron-ajax>-->
 
-
-  <template is="dom-repeat" items="[[categoryContent.content]]">
-    <div class="list-item" on-tap="handleTap" data-id$="[[item.id]]">
-      <p>[[item.projectName]]</p>
-      <p>[[item.id]]</p>
-      <img src="[[item.thumbnail.src]]" alt="[[item.thumbnail.altText]]">
-    </div>
-  </template>
+    <template is="dom-repeat" items="[[category.content]]">
+      <a href="/post/[[category.id]]/[[item.id]]/" class="list-item" on-tap="handleTap" data-id$="[[item.id]]">
+        <p>[[item.projectName]]</p>
+        <p>[[item.id]]</p>
+        <img src="[[item.thumbnail.src]]" alt="[[item.thumbnail.altText]]">
+      </a>
+    </template>
 
 
 
@@ -46,21 +43,13 @@
 
       properties: {
         category: {
-          type: String,
-          value: () => { return ``; },
-        },
-        categoryRequest: {
-          type: String,
-          computed: `computeRequestURL(category)`,
-        },
-        categoryContent: {
           type: Object,
           value: () => { return {}; },
         },
       },
 
       observers: [
-        'observerRouter(router)',
+
       ],
 
       ready() {
@@ -75,36 +64,12 @@
 
       },
 
+      /* OBSERVERS */
+
+
       /* FUNCTIONS */
-      observerRouter(router) {
-        // if (this.route.prefix === `/list`) {
-        //   // console.log(`I'm a list!`);
-        //   this.set(`category`, router.category);
-        //   this.doRequest();
-        // }
-      },
-
-      computeRequestURL(category) {
-        return `../../assets/data/${category}.json`;
-      },
-
-      doRequest() {
-        this.$$(`#category-request`).generateRequest();
-      },
-
-      onCategoryResponse(data) {
-        this.set(`categoryContent`, data.detail.response);
-        // console.log(this.categoryContent);
-      },
-
       handleTap(event) {
-        this.fire(`on-selected-post`, this.getSelectedPost(event.target.dataset.id));
-      },
-
-      getSelectedPost(postId) {
-        for (let i in this.categoryContent.content) {
-          if (this.categoryContent.content[i].id === postId) return this.categoryContent.content[i];
-        }
+        console.log(`tap`)
       },
 
     });

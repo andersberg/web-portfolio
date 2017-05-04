@@ -1,0 +1,63 @@
+<link rel="import" href="../../assets/libs/polymer/polymer.html">
+
+<dom-module id="portfolio-404">
+
+  <template>
+
+    <style>
+
+      :host {
+          display: flex;
+      }
+
+    </style>
+
+    <iron-ajax
+    auto
+    url="/assets/data/data.json"
+    handle-as="json"
+    on-response="handleResponse"
+    debounce-duration="300"></iron-ajax>
+
+    404
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'portfolio-404',
+
+      behaviors: [
+
+      ],
+
+      properties: {
+        data: {
+          type: Object
+        },
+      },
+
+      ready() {
+
+      },
+
+      attached() {
+
+      },
+
+      detached() {
+
+      },
+
+      /* FUNCTIONS */
+      handleResponse(data) {
+        // console.log(data.detail.response);
+      }
+
+    });
+
+  </script>
+
+</dom-module>

@@ -1,5 +1,4 @@
 <link rel="import" href="../../assets/libs/polymer/polymer.html">
-<link rel="import" href="../../assets/libs/app-route/app-route.html">
 <link rel="import" href="../../assets/libs/iron-ajax/iron-ajax.html">
 
 <dom-module id="portfolio-post">
@@ -18,9 +17,7 @@
 
     </style>
 
-  <app-route route="[[route]]" pattern="/:post" data="{{router}}"></app-route>
-  <iron-ajax id="post-request" url="[[postRequest]]" handle-as="json" on-response="onPostResponse" debounce-duration="300"></iron-ajax>
-
+    <!--<iron-ajax id="category-request" url="[[requestUrl]]" handle-as="json" on-response="onCategoryResponse" debounce-duration="300"></iron-ajax>-->
     [[post.projectName]]
 
     <template is="dom-repeat" items="[[post.images]]">
@@ -43,12 +40,12 @@
         post: {
           type: Object,
           value: () => { return {}; },
-          observer: `observePost`,
+          observer: 'observerPost'
         },
       },
 
       observers: [
-        'observerRouter(router)',
+
       ],
 
       ready() {
@@ -63,31 +60,12 @@
 
       },
 
+      /* OBSERVERS */
+      observerPost(post) {
+        console.log(post);
+      }
+
       /* FUNCTIONS */
-      observerRouter(router) {
-        // if (this.route.prefix === `/post`) {
-        //   console.log(`I'm a post!`);
-        //   this.set(`category`, router.category);
-        //   this.doRequest();
-        // }
-      },
-
-      computeRequestURL(post) {
-        return `../../assets/data/${category}.json`;
-      },
-
-      doRequest() {
-        this.$$(`#category-request`).generateRequest();
-      },
-
-      onCategoryResponse(data) {
-        this.set(`categoryContent`, data.detail.response);
-        // console.log(this.categoryContent);
-      },
-
-      observePost(post) {
-        console.log(`observePost: `, post);
-      },
 
     });
 
