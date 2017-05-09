@@ -12,7 +12,6 @@ const port = process.env.PORT || 3000;
 const app = new Koa();
 const buildFolder = path.resolve(`${__dirname}/../build`);
 const indexFile = path.resolve(`${__dirname}/../build/index.html`);
-// const dataFolder = path.resolve(`${__dirname}/../build/assets/data`);
 
 app.use(logger());
 app.use(helmet.frameguard({ action: 'deny', }));
@@ -22,7 +21,6 @@ app.use(compress());
 app.use(conditional());
 app.use(etag());
 app.use(serve(buildFolder));
-// app.use(serve(dataFolder, { index: false, }));
 
 app.use(async (ctx) => {
   ctx.set(`Content-Type`, `text/html; charset=utf-8`);
