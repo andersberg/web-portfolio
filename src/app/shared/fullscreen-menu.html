@@ -1,0 +1,138 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="fullscreen-menu">
+
+  <template>
+    <style>
+      :host {
+        display: flex;
+      }
+
+      .toggle-container {
+        display: flex;
+        justify-content: flex-end;
+        position: fixed;
+        width: 100vw;
+        height: 10rem;
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 999999;
+      }
+
+      .nav-toggle {
+
+      }
+
+      .fullscreen-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 1);
+        transition: opacity 1s ease;
+      }
+
+      .fullscreen-container[visible] {
+        /*display: flex;*/
+        opacity: 1;
+        z-index: 9999;
+      }
+
+      .fullscreen-container:not([visible])  {
+        /*display: none;*/
+        opacity: 0;
+        z-index: -9999;
+      }
+
+      .nav-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50vw;
+      }
+
+      .nav-menu a {
+        flex: 1;
+      }
+    </style>
+
+    <div class="toggle-container">
+      <button class="nav-toggle" on-tap="toggleNav">Menu</button>
+    </div>
+
+    <div class="fullscreen-container" visible>
+
+      <nav class="nav-menu">
+        <slot name="nav-menu">
+
+        </slot>
+      </nav>
+
+    </div>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: `fullscreen-menu`,
+
+      behaviors: [
+
+      ],
+
+      properties: {
+
+      },
+
+      observers: {
+
+      },
+
+      listeners: {
+
+      },
+
+      /* LIFE CYCLE */
+      ready() {
+
+      },
+
+      attached() {
+
+      },
+
+      detached() {
+
+      },
+
+      /* OBSERVERS */
+
+
+      /* LISTENERS */
+
+
+      /* FUNCTIONS */
+      toggleNav(event) {
+        const element = this.$$(`.fullscreen-container`);
+        (element.hasAttribute(`visible`)) ? this.removeVisible(element) : this.setVisible(element);
+      },
+
+      setVisible(element) {
+        element.setAttribute(`visible`, ``);
+      },
+
+      removeVisible(element) {
+        element.removeAttribute(`visible`)
+      },
+
+    });
+
+  </script>
+
+</dom-module>

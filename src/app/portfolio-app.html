@@ -5,6 +5,7 @@
 <link rel="import" href="../assets/libs/iron-pages/iron-pages.html">
 <link rel="import" href="../assets/libs/iron-ajax/iron-ajax.html">
 <link rel="import" href="home/portfolio-home.html">
+<link rel="import" href="shared/fullscreen-menu.html">
 
 <dom-module id="portfolio-app">
 
@@ -28,19 +29,21 @@
     <app-route route="{{route}}" pattern="/:page" data="{{pageRouter}}" tail="{{categoryRoute}}"></app-route>
     <app-route route="{{categoryRoute}}" pattern="/:category" data="{{categoryRouter}}" tail="{{postRoute}}"></app-route>
     <app-route route="{{postRoute}}" pattern="/:post" data="{{postRouter}}"></app-route>
-    
-    <iron-ajax 
-      id="category-request" 
-      url="[[computeRequestURL(categoryRouter.category)]]" 
-      handle-as="json" 
-      on-response="onCategoryResponse" 
+
+    <iron-ajax
+      id="category-request"
+      url="[[computeRequestURL(categoryRouter.category)]]"
+      handle-as="json"
+      on-response="onCategoryResponse"
       debounce-duration="300"></iron-ajax>
 
     <header>
-      <a href="/">Home</a>
-      <a href="/category/graphic-design">Graphic Design</a>
-      <a href="/category/photography">Photography</a>
-      <a href="/about">About</a>
+      <fullscreen-menu>
+        <a slot="nav-menu" href="/">Home</a>
+        <a slot="nav-menu" href="/category/graphic-design">Graphic Design</a>
+        <a slot="nav-menu" href="/category/photography">Photography</a>
+        <a slot="nav-menu" href="/about">About</a>
+      </fullscreen-menu>
     </header>
 
     <iron-pages selected="[[page]]" attr-for-selected="selected" selected-attribute="visible" fallback-selection="404" on-iron-select="listenerIronSelect">
@@ -113,7 +116,7 @@
       /* OBSERVERS */
       observerRoute(route) {
         // console.log(`observerRoute: `, this.pageRouter, this.categoryRouter, this.postRouter);
-        
+
         if (this.pageRouter.page === `category` || this.pageRouter.page === `post`) {
           if (this.categoryRouter.category && this.isObjectEmpty(this.category)) {
             this.doRequest(this.requestUrl);
