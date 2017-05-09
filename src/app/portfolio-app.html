@@ -28,10 +28,10 @@
     <app-route route="{{route}}" pattern="/:page" data="{{pageRouter}}" tail="{{categoryRoute}}"></app-route>
     <app-route route="{{categoryRoute}}" pattern="/:category" data="{{categoryRouter}}" tail="{{postRoute}}"></app-route>
     <app-route route="{{postRoute}}" pattern="/:post" data="{{postRouter}}"></app-route>
-
+    
     <iron-ajax 
       id="category-request" 
-      url="[[requestUrl]]" 
+      url="[[computeRequestURL(categoryRouter.category)]]" 
       handle-as="json" 
       on-response="onCategoryResponse" 
       debounce-duration="300"></iron-ajax>
@@ -86,11 +86,6 @@
         post: {
           type: Object,
           value: () => { return {}; },
-        },
-        requestUrl: {
-          type: String,
-          value: () => { return ``; },
-          computed: `computeRequestURL(categoryRouter.category)`,
         }
       },
 
@@ -151,11 +146,11 @@
 
       /* FUNCTIONS */
       computeRequestURL(category) {
-        if (category) return `../../assets/data/${category}.json`;
+        if (category) return `/assets/data/${category}.json`;
       },
 
       doRequest(requestUrl) {
-        if (requestUrl) this.$$(`#category-request`).generateRequest();
+        this.$$(`#category-request`).generateRequest();
       },
 
       onCategoryResponse(data) {
