@@ -7,7 +7,6 @@
     "editor.renderWhitespace": "all",
     "editor.renderIndentGuides": true,
     "editor.folding": false,
-    "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "editor.detectIndentation": true,
     "diffEditor.renderSideBySide": true,

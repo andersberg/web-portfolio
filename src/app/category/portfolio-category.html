@@ -1,7 +1,7 @@
 <link rel="import" href="../../assets/libs/polymer/polymer.html">
 <link rel="import" href="../../assets/libs/iron-ajax/iron-ajax.html">
 
-<dom-module id="portfolio-list">
+<dom-module id="portfolio-category">
 
   <template>
 
@@ -11,7 +11,7 @@
           display: flex;
       }
 
-      .list-item > * {
+      .category-item > * {
         pointer-events: none;
         user-select: none;
       }
@@ -20,7 +20,7 @@
     <!--<iron-ajax id="category-request" url="[[requestUrl]]" handle-as="json" on-response="onCategoryResponse" debounce-duration="300"></iron-ajax>-->
 
     <template is="dom-repeat" items="[[category.content]]">
-      <a href="/post/[[category.id]]/[[item.id]]/" class="list-item" on-tap="handleTap" data-id$="[[item.id]]">
+      <a href="/post/[[category.id]]/[[item.id]]/" class="category-item" on-tap="handleTap" data-id$="[[item.id]]">
         <p>[[item.projectName]]</p>
         <p>[[item.id]]</p>
         <img src="[[item.thumbnail.src]]" alt="[[item.thumbnail.altText]]">
@@ -35,7 +35,7 @@
 
     Polymer({
 
-      is: 'portfolio-list',
+      is: 'portfolio-category',
 
       behaviors: [
 

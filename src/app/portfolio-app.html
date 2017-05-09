@@ -24,16 +24,22 @@
     </style>
 
     <app-location route="{{route}}"></app-location>
+
     <app-route route="{{route}}" pattern="/:page" data="{{pageRouter}}" tail="{{categoryRoute}}"></app-route>
     <app-route route="{{categoryRoute}}" pattern="/:category" data="{{categoryRouter}}" tail="{{postRoute}}"></app-route>
     <app-route route="{{postRoute}}" pattern="/:post" data="{{postRouter}}"></app-route>
 
-    <iron-ajax id="category-request" url="[[requestUrl]]" handle-as="json" on-response="onCategoryResponse" debounce-duration="300"></iron-ajax>
+    <iron-ajax 
+      id="category-request" 
+      url="[[requestUrl]]" 
+      handle-as="json" 
+      on-response="onCategoryResponse" 
+      debounce-duration="300"></iron-ajax>
 
     <header>
       <a href="/">Home</a>
-      <a href="/list/graphic-design">Graphic Design</a>
-      <a href="/list/photography">Photography</a>
+      <a href="/category/graphic-design">Graphic Design</a>
+      <a href="/category/photography">Photography</a>
       <a href="/about">About</a>
     </header>
 
@@ -44,9 +50,9 @@
       <portfolio-about
         selected="about"></portfolio-about>
 
-      <portfolio-list
-        selected="list"
-        category="[[category]]"></portfolio-list>
+      <portfolio-category
+        selected="category"
+        category="[[category]]"></portfolio-category>
 
       <portfolio-post
         selected="post"
@@ -71,15 +77,15 @@
       properties: {
         page: {
           type: String,
-          value: () => { return {}; },
+          value: () => { return ``; },
         },
         category: {
           type: Object,
-          value: () => { return ``; },
+          value: () => { return {}; },
         },
         post: {
           type: Object,
-          value: () => { return ``; },
+          value: () => { return {}; },
         },
         requestUrl: {
           type: String,
@@ -89,9 +95,7 @@
       },
 
       observers: [
-        'logger(pageRouter.page)',
         'observerRoute(route)',
-        'observerCategory(category)'
       ],
 
       listeners: {
@@ -112,34 +116,30 @@
 
 
       /* OBSERVERS */
-      logger(x) {
-        console.log(`logger: `, x);
-      },
-
       observerRoute(route) {
-        if (this.pageRouter.page === `list` && !this.categoryRouter
+        // console.log(`observerRoute: `, this.pageRouter, this.categoryRouter, this.postRouter);
+        
+        if (this.pageRouter.page === `category` || this.pageRouter.page === `post`) {
+          if (this.categoryRouter.category && this.isObjectEmpty(this.category)) {
+            this.doRequest(this.requestUrl);
+          } else if (this.categoryRouter.category) {
+            if (this.category.id !== this.categoryRouter.category) {
+              this.doRequest(this.requestUrl);
+            } else if (this.category.id === this.categoryRouter.category) {
+
+            }
+          }
+        }
+
+        if (this.pageRouter.page === `post` && this.postRouter) this.setPost(this.category);
+
+        if (this.pageRouter.page === `category` && !this.categoryRouter
             || this.pageRouter.page === `post` && !this.postRouter) {
           this.set(`page`, `404`);
         } else {
           this.page = (this.pageRouter.page === '') ? 'home' : this.pageRouter.page;
         }
 
-        if (this.categoryRouter) {
-          // console.log(`request`);
-          this.doRequest();
-        }
-
-      },
-
-      observerCategory(category) {
-        console.log(`observerCategory: `, category);
-
-        console.log(this.pageRouter.page);
-
-        // if (this.pageRouter.page === `post`) {
-        //   console.log(`get post`);
-        //   this.getPost(this.category);
-        // }
       },
 
       /* LISTENERS */
@@ -151,23 +151,30 @@
 
       /* FUNCTIONS */
       computeRequestURL(category) {
-        return `../../assets/data/${category}.json`;
+        if (category) return `../../assets/data/${category}.json`;
       },
 
-      doRequest() {
-        this.$$(`#category-request`).generateRequest();
+      doRequest(requestUrl) {
+        if (requestUrl) this.$$(`#category-request`).generateRequest();
       },
 
       onCategoryResponse(data) {
         this.set(`category`, data.detail.response);
+        if (this.pageRouter.page === `post` && this.postRouter) this.setPost(this.category);
       },
 
-      getPost(category) {
+      setPost(category) {
         for (let i in category.content) {
-          if (category.content[i].id === this.postRouter.post)
-            this.set(`post`, category.content[i])
-            console.log(this.post);
+          if (category.content[i].id === this.postRouter.post) this.set(`post`, category.content[i]);
         }
+      },
+
+      isObjectEmpty(obj) {
+         if (Object.keys(obj).length === 0 && obj.constructor === Object) {
+           return true;
+         } else {
+           return false;
+         }
       },
 
     });

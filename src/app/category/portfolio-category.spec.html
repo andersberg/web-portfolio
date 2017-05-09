@@ -4,26 +4,26 @@
     <meta charset="utf-8">
     <title>Webcomponent test</title>
     <script src="../../web-component-tester/browser.js"></script>
-    <link rel="import" href="portfolio-list.html">
+    <link rel="import" href="portfolio-category.html">
 </head>
 <body>
 
-  <test-fixture id="portfolio-list">
+  <test-fixture id="portfolio-category">
     <template>
-      <portfolio-list></portfolio-list>
+      <portfolio-category></portfolio-category>
     </template>
   </test-fixture>
 
   <script>
 
-    suite('<portfolio-list>', () => {
+    suite('<portfolio-category>', () => {
       let element;
       setup(() => {
-        element = fixture('portfolio-list');
+        element = fixture('portfolio-category');
       });
 
       test('has correct element name', () => {
-        expect(element.is).to.be.equal('portfolio-list');
+        expect(element.is).to.be.equal('portfolio-category');
       });
     });
 
