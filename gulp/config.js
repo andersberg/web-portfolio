@@ -43,8 +43,8 @@ const config = {
     dest: `./build`,
   },
   imagemin: {
-    src: `./src/assets/images/**/*{.jpg,png}`,
-    dest: `./build/assets/images`,
+    src: `./src/assets/media/**/*{.jpg,png}`,
+    dest: `./build/assets/media`,
   },
   phraseapp: {
     project: `023834e5c49750f0a26fb428d4fbb9c3`,
