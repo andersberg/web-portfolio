@@ -1,5 +1,9 @@
 {
   "pageTitle": "Web Portfolio",
+  "coverImg": {
+    "url":"assets/media/pug.jpg",
+    "altText": "Pug wrapped in a blanket."
+  },
   "pages": [
     {
       "name": "Home",
