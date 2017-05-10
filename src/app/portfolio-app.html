@@ -26,6 +26,14 @@
     <app-route route="{{categoryRoute}}" pattern="/:category" data="{{categoryRouter}}" tail="{{postRoute}}"></app-route>
     <app-route route="{{postRoute}}" pattern="/:post" data="{{postRouter}}"></app-route>
 
+    <iron-ajax 
+      auto
+      id="page-request"
+      url="[[computeRequestURL('content')]]"
+      handle-as="json"
+      on-response="onContentResponse"
+      debounce-duration="300"></iron-ajax>
+
     <iron-ajax
       id="category-request"
       url="[[computeRequestURL(categoryRouter.category)]]"
@@ -44,7 +52,8 @@
 
     <iron-pages selected="[[page]]" attr-for-selected="selected" selected-attribute="visible" fallback-selection="404" on-iron-select="listenerIronSelect">
       <portfolio-home
-        selected="home"></portfolio-home>
+        selected="home"
+        content="[[content]]"></portfolio-home>
 
       <portfolio-about
         selected="about"></portfolio-about>
@@ -85,7 +94,11 @@
         post: {
           type: Object,
           value: () => { return {}; },
-        }
+        },
+        content: {
+          type: Object,
+          value: () => { return {}; },
+        },
       },
 
       observers: [
@@ -152,6 +165,11 @@
         this.$$(`#category-request`).generateRequest();
       },
 
+      onContentResponse(data) {
+        this.set(`content`, data.detail.response);
+        console.log(`onContentResponse: `, this.content);
+      },
+      
       onCategoryResponse(data) {
         this.set(`category`, data.detail.response);
         if (this.pageRouter.page === `post` && this.postRouter) this.setPost(this.category);
