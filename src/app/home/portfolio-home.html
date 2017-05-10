@@ -1,4 +1,5 @@
 <link rel="import" href="../../assets/libs/polymer/polymer.html">
+<link rel="import" href="../../assets/libs/iron-image/iron-image.html">
 
 <dom-module id="portfolio-home">
 
@@ -7,12 +8,58 @@
     <style>
 
       :host {
-          display: flex;
+        position: relative;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
       }
 
+      .cover-image {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      iron-image {
+        position: fixed;
+        z-index: -9;
+        border-radius: 50vw;
+      }
+
+      .square {
+        width: 80vw;
+        max-width: 80vh;
+        height: 80vw;
+        max-height: 80vh;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
     </style>
 
-    [[content.pageTitle]]
+    <div class="cover-image">
+      <iron-image 
+        class="square"
+        style="background-color: lightgray;"
+        sizing="cover" 
+        preload 
+        fade 
+        src="[[content.coverImg.url]]"></iron-image>
+    </div>
+
+    <main id="[[tagName]]">
+
+        [[content.pageTitle]]
+    </main>
 
   </template>
 
@@ -33,8 +80,9 @@
         },
       },
 
+      /* LIFE CYCLE */
       ready() {
-
+        this.onWindowResize();
       },
 
       attached() {
@@ -44,6 +92,20 @@
       detached() {
 
       },
+
+      /* OBSERVERS */
+      
+
+      /* LISTENERS */
+      onWindowResize() {
+        window.onresize = () => {
+          console.log(`resize: `, window.innerWidth, window.innerHeight);
+
+        }
+      },
+
+      /* FUNCTIONS */
+      
 
     });
 
