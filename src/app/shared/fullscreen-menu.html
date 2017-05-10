@@ -64,12 +64,14 @@
       <button class="nav-toggle" on-tap="toggleNav">Menu</button>
     </div>
 
-    <div class="fullscreen-container" visible>
-
+    <div class="fullscreen-container"> 
       <nav class="nav-menu">
-        <slot name="nav-menu">
-
-        </slot>
+        <template is="dom-repeat" items="[[pages]]" as="page">
+          <a id="[[page.id]]" class="nav-link" href="[[page.url]]" on-tap="navTap">
+            <p class="nav-name">[[page.name]]</p>
+            <p class="nav-desc">[[page.desc]]</p>
+          </a>
+        </template>
       </nav>
 
     </div>
@@ -87,7 +89,10 @@
       ],
 
       properties: {
-
+        pages: {
+          type: Array,
+          value: () => { return []; },
+        }
       },
 
       observers: {

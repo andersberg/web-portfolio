@@ -16,6 +16,7 @@
       :host {
           display: flex;
           flex-direction: column;
+          --toggle-container-height: 4rem;
       }
 
     </style>
@@ -42,11 +43,7 @@
       debounce-duration="300"></iron-ajax>
 
     <header>
-      <fullscreen-menu>
-        <a slot="nav-menu" href="/">Home</a>
-        <a slot="nav-menu" href="/category/graphic-design">Graphic Design</a>
-        <a slot="nav-menu" href="/category/photography">Photography</a>
-        <a slot="nav-menu" href="/about">About</a>
+      <fullscreen-menu pages="[[content.pages]]">
       </fullscreen-menu>
     </header>
 
