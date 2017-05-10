@@ -1,0 +1,29 @@
+{
+  "pageTitle": "Web Portfolio",
+  "pages": [
+    {
+      "name": "Home",
+      "id": "home",
+      "url": "/",
+      "desc": "Home"
+    },
+    {
+      "name": "About",
+      "id": "about",
+      "url": "/about",
+      "desc": "About"
+    },
+    {
+      "name": "Graphic Design",
+      "id": "graphic-design",
+      "url": "/category/graphic-design",
+      "desc": "Graphic Design category"
+    },
+    {
+      "name": "Photography",
+      "id": "photography",
+      "url": "/category/photography",
+      "desc": "Photography category"
+    }
+  ]
+}
