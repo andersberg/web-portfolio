@@ -83,7 +83,7 @@
 
       /* LIFE CYCLE */
       ready() {
-        this.onWindowResize();
+      
       },
 
       attached() {
@@ -98,12 +98,7 @@
       
 
       /* LISTENERS */
-      onWindowResize() {
-        window.onresize = () => {
-          console.log(`resize: `, window.innerWidth, window.innerHeight);
-
-        }
-      },
+   
 
       /* FUNCTIONS */
       
