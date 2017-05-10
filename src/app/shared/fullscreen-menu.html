@@ -32,19 +32,15 @@
         bottom: 0;
         left: 0;
         background-color: rgba(255, 255, 255, 1);
-        transition: opacity 0.3s ease;
+        z-index: -9999;
+        opacity: 0;
+        transition: opacity 350ms 100ms cubic-bezier(.735,.16,.16,.885);
       }
 
       .fullscreen-container[visible] {
-        /*display: flex;*/
         opacity: 1;
-        z-index: 9999;
-      }
-
-      .fullscreen-container:not([visible])  {
-        /*display: none;*/
-        opacity: 0;
-        z-index: -9999;
+        /*z-index: 9999;*/
+        /*transition: opacity 350ms .1s cubic-bezier(.735,.16,.16,.885);*/
       }
 
       .nav-menu {
@@ -58,6 +54,7 @@
       .nav-menu a {
         flex: 1;
       }
+
     </style>
 
     <div class="toggle-container">
@@ -73,7 +70,6 @@
           </a>
         </template>
       </nav>
-
     </div>
 
   </template>
@@ -134,11 +130,15 @@
       },
 
       setVisible(element) {
+        element.style.zIndex = `9999`;
         element.setAttribute(`visible`, ``);
       },
 
       removeVisible(element) {
         element.removeAttribute(`visible`)
+        setTimeout(() => {
+          element.style.zIndex = `-9999`;
+        }, 450);
       },
     });
 
