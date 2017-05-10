@@ -18,7 +18,7 @@
           flex-direction: column;
           --toggle-container-height: 4rem;
       }
-
+      
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -164,7 +164,6 @@
 
       onContentResponse(data) {
         this.set(`content`, data.detail.response);
-        console.log(`onContentResponse: `, this.content);
       },
       
       onCategoryResponse(data) {
