@@ -22,6 +22,7 @@
     "polymer": "^1.8.1",
     "app-route": "PolymerElements/app-route#^0.9.3",
     "iron-pages": "PolymerElements/iron-pages#^1.0.8",
-    "iron-ajax": "PolymerElements/iron-ajax#^1.4.4"
+    "iron-ajax": "PolymerElements/iron-ajax#^1.4.4",
+    "iron-image": "PolymerElements/iron-image#^1.2.6"
   }
 }
