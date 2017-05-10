@@ -92,7 +92,7 @@
         pages: {
           type: Array,
           value: () => { return []; },
-        }
+        },
       },
 
       observers: {
@@ -124,14 +124,13 @@
 
       /* FUNCTIONS */
       toggleNav(event) {
-        const element = this.$$(`.fullscreen-container`);
-        (element.hasAttribute(`visible`)) ? this.removeVisible(element) : this.setVisible(element);
+        const fullscreenContainer = this.$$(`.fullscreen-container`);
+        (fullscreenContainer.hasAttribute(`visible`)) ? this.removeVisible(fullscreenContainer) : this.setVisible(fullscreenContainer);
       },
 
       navTap(event) {
-        console.log(event.detail);
-        const element = this.$$(`.fullscreen-container`);
-        this.removeVisible(element)
+        const fullscreenContainer = this.$$(`.fullscreen-container`);
+        this.removeVisible(fullscreenContainer);
       },
 
       setVisible(element) {
