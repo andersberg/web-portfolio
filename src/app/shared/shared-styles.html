@@ -1,0 +1,36 @@
+<!-- shared-styles.html -->
+<dom-module id="shared-styles">
+    <template>
+        <style>
+            :root {
+                --primary-color: #ECEFF1;
+                --secondary-color: #9DC5D0;
+                --lightgrey-color: #eeeff1;
+                --grey-color: #7a7c7b;
+                --lightblue-color: #a3c9d4;
+                --blue-color: #7aaab5;
+                --black-color: #313236;
+                
+                --toggle-container-height: 4rem;
+            }
+
+            @media (--tablet) {
+                html {
+                    background-color: #efefef;
+                }
+            }
+
+            @media (--desktop) {
+                html {
+                    background-color: #c5c5c5;
+                }
+            }
+
+            @media (--lg-desktop) {
+                html {
+                    background-color: #a5a5a5;
+                }
+            }
+        </style>
+    </template>
+</dom-module>
