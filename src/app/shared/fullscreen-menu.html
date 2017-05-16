@@ -15,14 +15,14 @@
         width: 100vw;
         height: var(--toggle-container-height);
         background-color: rgba(0, 0, 0, 0.2);
-        z-index: 999999;
+        z-index: 999;
       }
 
       .nav-toggle {
         border: none;
         background-color: var(--blue-color);
       }
-      
+
       .fullscreen-container {
         display: flex;
         justify-content: center;
@@ -34,7 +34,7 @@
         left: 0;
         background-color: var(--black-color);
         color: var(--white-color);
-        z-index: -9999;
+        z-index: -999;
         opacity: 0;
         transition: opacity 350ms 100ms cubic-bezier(.735,.16,.16,.885);
       }
@@ -61,7 +61,7 @@
       <button class="nav-toggle" on-tap="toggleNav">Menu</button>
     </div>
 
-    <div class="fullscreen-container"> 
+    <div class="fullscreen-container">
       <nav class="nav-menu">
         <template is="dom-repeat" items="[[pages]]" as="page">
           <a id="[[page.id]]" class="nav-link" href="[[page.url]]" on-tap="navTap">
@@ -130,14 +130,14 @@
       },
 
       setVisible(element) {
-        element.style.zIndex = `9999`;
+        element.style.zIndex = `998`;
         element.setAttribute(`visible`, ``);
       },
 
       removeVisible(element) {
         element.removeAttribute(`visible`)
         setTimeout(() => {
-          element.style.zIndex = `-9999`;
+          element.style.zIndex = `-999`;
         }, 450);
       },
     });
