@@ -5,7 +5,7 @@
 
   <template>
 
-    <style>
+    <style include="shared-styles">
 
       :host {
           display: flex;
@@ -19,13 +19,17 @@
 
     <!--<iron-ajax id="category-request" url="[[requestUrl]]" handle-as="json" on-response="onCategoryResponse" debounce-duration="300"></iron-ajax>-->
 
-    <template is="dom-repeat" items="[[category.content]]">
-      <a href="/post/[[category.id]]/[[item.id]]/" class="category-item" on-tap="handleTap" data-id$="[[item.id]]">
-        <p>[[item.projectName]]</p>
-        <p>[[item.id]]</p>
-        <!--<img src="[[item.thumbnail.src]]" alt="[[item.thumbnail.altText]]">-->
-      </a>
-    </template>
+    <main class="content-container">
+      <h1>[[pageTitle]]</h1>
+
+      <template is="dom-repeat" items="[[category.content]]">
+        <a href="/post/[[category.id]]/[[item.id]]/" class="category-item" on-tap="handleTap" data-id$="[[item.id]]">
+          <p>[[item.projectName]]</p>
+          <p>[[item.id]]</p>
+          <!--<img src="[[item.thumbnail.src]]" alt="[[item.thumbnail.altText]]">-->
+        </a>
+      </template>
+    </main>
 
 
 
