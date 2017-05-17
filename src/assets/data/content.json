@@ -1,8 +1,11 @@
 {
   "pageTitle": "Web Portfolio",
   "coverImg": {
-    "url":"assets/media/home-bg.jpg",
-    "altText": "Pug wrapped in a blanket."
+    "url":"assets/media/nathalie.png",
+    "altText": "Picture of Nathalie smiling."
+  },
+  "tileImg": {
+    "url":"assets/media/grain.png"
   },
   "pages": [
     {
