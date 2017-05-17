@@ -14,29 +14,43 @@
         height: 100vh;
       }
 
-      .cover-image {
-        position: absolute;
+      .background {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        align-items: center;
+        position: relative;
         width: 100%;
         height: 100%;
+        background-color: #cdecd8;
       }
 
-      iron-image {
-        /*border-radius: 50vw;*/
+      .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100vw;
         height: 100vh;
       }
 
-      .square {
-        width: 80vw;
+      .background-image {
+        position: absolute;
+        bottom: 0;
+        align-self: center;
+        width: 50%;
         max-width: 80vh;
-        height: 80vw;
         max-height: 80vh;
+        /*height: 80vh;
+        max-height: 80vw;
+        width: 80vw;
+        max-width: 80vh;*/
+        /*width: 100vw;
+        max-width: 100vh;
+        height: auto;
+        max-height: 100vh;*/
       }
-
+      /*
       main {
+        position: absolute;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -44,22 +58,25 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-      }
+      }*/
     </style>
 
-    <div class="cover-image">
-      <iron-image
-        style="background-color: lightgray;"
-        sizing="cover"
+    <div class="background">
+      <!--<iron-image
+        class="background-image"
+        sizing="contain"
         preload
         fade
-        src="[[content.coverImg.url]]"></iron-image>
+        src="[[content.coverImg.url]]"></iron-image>-->
+        <img src="[[content.coverImg.url]]" alt="[[content.coverImg.altText]]" class="background-image">
+      <div class="image-overlay" style="background-image: url('/assets/media/grain.png')"></div>
     </div>
 
-    <main id="[[tagName]]">
+
+    <!--<main id="[[tagName]]">
 
         <h1>[[content.pageTitle]]</h1>
-    </main>
+    </main>-->
 
   </template>
 
